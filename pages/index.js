@@ -41,7 +41,7 @@ export default function Home({ rPerson, fakePerson }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch("https://randomuser.me/api/?gender=female");
   const rPerson = await res.json();
 
