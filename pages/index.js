@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { render } from "react-dom";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 export default function Home({ rPerson, fakePerson }) {
   return (
@@ -33,6 +34,9 @@ export default function Home({ rPerson, fakePerson }) {
           </div>
         );
       })}
+      <footer className={styles.footer}>
+        <Link href="/about">Made with ♥ by Shubh </Link>
+      </footer>
     </div>
   );
 }
