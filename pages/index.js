@@ -2,7 +2,7 @@ import Head from "next/head";
 import { render } from "react-dom";
 import styles from "../styles/Home.module.css";
 
-export default function Home({ rPerson }) {
+export default function Home({ rPerson, fakePerson }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +17,11 @@ export default function Home({ rPerson }) {
         return (
           <div className={styles.card} key={key}>
             <div className={styles.profilePic}>
-              <img src={det.picture.large} alt="" />
+              <img
+                src={fakePerson.image_url}
+                alt="{fakePerson.filename}"
+                height="200px"
+              />
             </div>
             <p>
               <b>{`${det.name.title}. ${det.name.first} ${det.name.last}`}</b>
@@ -34,12 +38,16 @@ export default function Home({ rPerson }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("https://randomuser.me/api/");
+  const res = await fetch("https://randomuser.me/api/?gender=female");
   const rPerson = await res.json();
+
+  const res1 = await fetch("https://fakeface.rest/face/json?gender=female");
+  const fakePerson = await res1.json();
 
   return {
     props: {
       rPerson,
+      fakePerson,
     },
   };
 }
